@@ -1,0 +1,7 @@
+package com.cg.iter.model;
+
+public class UserRating 
+{
+	private List<Rating> userRato
+
+}

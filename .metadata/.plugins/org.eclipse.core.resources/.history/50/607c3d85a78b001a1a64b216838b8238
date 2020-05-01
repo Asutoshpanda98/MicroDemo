@@ -1,0 +1,42 @@
+
+//This is not microservice this is just spring boot apllication
+package com.cg.iter.resource;
+
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cg.iter.resource.model.CatalogItem;
+import com.cg.iter.resource.model.Rating;
+
+@RestController//with this annotation it becomes a rest controller
+//whenever a request is made spring boot will look it and ask for any mapping for it so this will handle the request
+@RequestMapping("/catalog")
+public class MovieCatalogResource 
+{
+	
+	@GetMapping("/{userId}")
+	public List<CatalogItem> getCatalog(@PathVariable("userId") String userId){
+	//@pathvariable is used to denote that this is a variable passed and it need to pass is at arguments 
+	//Steps to connect it with movie info service
+	//get all rated movie ids
+	List<Rating> ratings = Arrays.asList(
+			new Rating("1234",4),//haard coded the movies that has been watched
+			new Rating("5467",3)
+			);
+	//for each movie id,call movie info service and get  data
+	//now we have to make api call
+	return ratings.stream().map(rating->new CatalogItem("transformers" , "Test" , 4)).collect(Collectors.toList());
+	
+	
+	//put them all together
+	}
+}

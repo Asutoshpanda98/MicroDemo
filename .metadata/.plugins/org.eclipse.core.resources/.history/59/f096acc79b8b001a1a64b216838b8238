@@ -1,0 +1,5 @@
+package com.cg.iter.model;
+
+public class Movie {
+
+}
